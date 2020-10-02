@@ -7,5 +7,6 @@ class CreateBooksTable < ActiveRecord::Migration
       t.string :authors_name
       t.integer :page_count
       t.integer :reading_level
+    end
   end
 end
