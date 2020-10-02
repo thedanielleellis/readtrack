@@ -1,0 +1,13 @@
+<h1> Edit Your Info </h1> 
+
+<form action="/books/<%= @book.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="patch">
+Child_Name: <input type=text value="<%= @book.child_name %>" name="child_name">
+Child_Age: <input type=number value="<%= @book.child_age %>" name="child_age">
+Book_Title: <input type=text value="<%= @book.book_title %>" name="book_title">
+Authors_Name: <input type=text value="<%= @book.authors_name %>" name="authors_name">
+Page_Count: <input type=number value="<%= @book.page_count %>" name="page_count">
+Reading_Level: <input type=number value="<%= @book.reading_level %>" name="reading_level">
+<input type=submit>
+<form> 
+

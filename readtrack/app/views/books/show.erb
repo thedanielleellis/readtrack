@@ -1,0 +1,11 @@
+Child Name: <%= @book.child_name %> <br>
+Child Age: <%= @book.child_age %> <br>
+Book Title: <%= @book.book_title %> <br>
+Authors Name: <%= @book.authors_name %> <br>
+Page Count: <%= @book.page_count %> <br>
+Reading Level: <%= @book.reading_level %>
+
+<form method="post" action="/books/<%= @book.id %>" 
+<input id="hidden" type="hidden" name="_method" value="DELETE">
+<input type="submit" value="delete">
+<form> 
