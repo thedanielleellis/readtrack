@@ -1,0 +1,53 @@
+                    ReadTrack 
+helps parents keep track of the books their child reads. 
+User can create, read, update and delete a book's info 
+
+Interface:
+- User can view book form
+- User can submit book form
+- User can edit book form
+
+User class 
+- attributes => name, password
+- user signs up/logs in 
+- has many books
+
+User controller and views
+- '/users/signup' => renders sign up form 
+- '/users/signup' => processes sign up form, creates user, post
+- '/users/login' => renders login form 
+- '/users/login' => processes login form, post 
+- need to set sessions
+- user can view their books, '/users/:id/books'
+
+Order class
+- attributes => child_name, child_age, book_title, authors_name, page_count, reading_level
+- book belongs to user 
+
+Order controller and views 
+- '/books/new => renders new book form 
+- '/books' => submits book 
+- '/books' = renders all books 
+- '/books/:id => renders one instance 
+- '/books/:id/edit => renders update form for an instance 
+- '/books/:id => updates instance 
+- '/books/:id:/delete' => deletes instance 
+
+Where to start?
+X set up classes 
+X set up my database 
+- users controller 
+- books cotroller 
+
+Sessions:
+- enable sessions
+- utilize sessions hash in the methods that persist user data into applications
+
+Authentication:
+- bcrypt gem
+- user model needs has_secure_password
+- change out users table, password field becomes => password_digest
+
+If User is Logged in?
+- redirect to homepage, if logged in 
+- can't see the signup or loggin form if logged in 
