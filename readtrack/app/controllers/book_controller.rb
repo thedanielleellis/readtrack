@@ -22,7 +22,7 @@ class BookController < ApplicationController
     post '/books' do
         if logged_in?
         @book = current_user.books.build(params)
-        if !book.save
+        if !@book.save
             @errors = @expense.errors.full_messages
             erb :'/books/new'
         else
@@ -55,7 +55,7 @@ class BookController < ApplicationController
         end
     end 
 
-    patch '/books/:id' do
+    post '/books/:id' do
         @book = Book.find(params[:id])
         @book.child_name = params[:child_name]
         @book.child_age = params[:child_age] 
@@ -67,15 +67,15 @@ class BookController < ApplicationController
             @errors = @book.errors.full_messages
             erb :'/books/edit'
         else
-            redirect to ("/books/#{@book.id}")
+            redirect to("/books/#{@book.id}")
         end
     end
 
     #delete 
-    delete '/books/:id/delete' do 
+    post '/books/:id/delete' do 
         @book = Book.find(params[:id])
         if logged_in? && @book.user == current_user
-            @book.destroy
+            @book.delete
             redirect to ('/books') 
         else 
             redirect to('/users/login')

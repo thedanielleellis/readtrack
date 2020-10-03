@@ -1,4 +1,23 @@
 <p> Welcome to ReadTrack <%= @current_user.username %></p>
 
+<% if @errors %>
+  <p style="color: red;"><%= @errors %></p>
+<% end %>
+
+<h1>My Books</h1>
+<br>
+<ul>
+  <% if @books.size > 0 %>
+    <% @books.each do |book| %>
+      <% if book.user_id == @current_user.id %>
+        <li><a href="/books/<%= book.id %>"><b><%= book.child_name %></b></a> from <%= book.child_age %> </li>
+        <br></br>
+      <% end %>
+    <% end %>
+    <a href="/books/new">Create new book</a>
+  <% else %>
+    <p> You don not have any recorded books! <a href="/books/new">Create a new one here</a>.</p>
+  <% end %>
+</ul>
  
 
