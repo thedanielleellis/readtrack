@@ -8,7 +8,7 @@ Interface:
 - User can edit book form
 
 User class 
-- attributes => name, password
+- attributes => username, email, password
 - user signs up/logs in 
 - has many books
 
@@ -20,11 +20,11 @@ User controller and views
 - need to set sessions
 - user can view their books, '/users/:id/books'
 
-Order class
+Book class
 - attributes => child_name, child_age, book_title, authors_name, page_count, reading_level
 - book belongs to user 
 
-Order controller and views 
+Book controller and views 
 - '/books/new => renders new book form 
 - '/books' => submits book 
 - '/books' = renders all books 
