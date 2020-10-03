@@ -1,9 +1,15 @@
-<div class="login">
-<h1> Login Here! </h1>
+<h1> Log In Here! </h1>
+<br></br>
+
+<% if @errors %>
+  <p style="color: red;"><%= @errors %></p>
+<% end %>
 
 <form action='/users/login' method="POST">
 Username: <input type=text name="username">
+<br></br>
 Password: <input type=password name="password">
-          <input type=submit>
-<form>
-</div>
+<br></br>
+          <input type="submit" value="Log In">
+          <br></br>  
+</form>

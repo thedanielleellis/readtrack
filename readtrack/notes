@@ -51,3 +51,46 @@ Authentication:
 If User is Logged in?
 - redirect to homepage, if logged in 
 - can't see the signup or loggin form if logged in 
+
+Params 
+child_name: params[:child_name], 
+child_age: params[:child_age], 
+            book_title: params[:book_title],
+            authors_name: params[:authors_name],
+            page_count: params[:page_count],
+            reading_level: params[:reading_level]
+
+
+Index
+<p> Welcome to ReadTrack <%= @current_user.username %></p>
+
+<% if @errors %>
+  <p style="color: red;"><%= @errors %></p>
+<% end %>
+
+<h1> Book List </h1>
+
+<h2>Hi <%= current_user.username%>!</h2>
+<%if @books == [] %>
+  <h3>You have no books listed</h3><br>  
+  <h5><a href = "/books/new">Please Enter New Comic</a></h5><br>
+<%else%>
+  <h3> Here is a list of your comics!</h3>
+  <h4><b>Select a comic to view more details<b></h4><br>
+  
+  <% @books.each do |book| %>
+      <ul>
+        <li><a href = "/books/<%= book.id %>"><%= book.child_name %> - 
+        <%= book.child_age %> - <%= book.book_title %>	
+        </a></li> 	         	
+      </ul>
+    <%end%>
+  <%end%>
+
+    
+<p><a href="/books/new">Add new comic</a></p>
+<p><a href="/logout">Log out</a></p>
+
+
+<a href="/login">Please Log In</a>
+

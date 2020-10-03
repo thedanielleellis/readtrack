@@ -1,4 +1,10 @@
-<h1> Edit Your Info </h1> 
+<h1> Edit Your Log</h1> 
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p style="color: red;"><%= error %></p>
+  <% end %>
+<% end %>
 
 <form action="/books/<%= @book.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="patch">
@@ -8,6 +14,6 @@ Book_Title: <input type=text value="<%= @book.book_title %>" name="book_title">
 Authors_Name: <input type=text value="<%= @book.authors_name %>" name="authors_name">
 Page_Count: <input type=number value="<%= @book.page_count %>" name="page_count">
 Reading_Level: <input type=number value="<%= @book.reading_level %>" name="reading_level">
-<input type=submit>
+<input type="submit" value="Update Log">
 <form> 
 

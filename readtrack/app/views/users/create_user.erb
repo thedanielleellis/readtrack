@@ -1,0 +1,18 @@
+<h1>Sign Up!</h1>
+
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p style="color: red;"><%= error %></p>
+  <% end %>
+<% end %>
+
+<form action='/users/signup' method="POST">
+Email: <input type=text name="email">
+<br></br>
+Username: <input type=text name="username">
+<br></br>
+Password: <input type=password name="password">
+<br></br>
+<input type="submit" value="Sign Up">
+
+</form>

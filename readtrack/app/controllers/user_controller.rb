@@ -1,51 +1,52 @@
 class UserController < ApplicationController
 
     get '/users/signup' do
-        erb :'/users/signup'
-    end 
-
-    post '/users/signup' do
-        if params[:username]== " " && params[:password]== " "
-            redirect "/users/signup"
+        if !session[:user_id]
+        erb :'/users/create_user'
         else 
-            @user = User.create(
-                username: params[:username], 
-                password: params[:password]
-                )
-            session[:user_id] = @user.id
-            redirect "/users/#{@user.id}"
-        end 
-    end
-
-    #show page 
-    get '/users/:id' do
-        @user = User.find(params[:id])
-        erb :'/users/show'
-    end
-
-    get '/users/login' do
-        #if the user is loggined redirect to their homepage 
-        if logged_in?
-            @user = User.find(session[:user_id])
-            redirect "/users/#{@user.id}"
-        #else, show them the log in form 
-        else 
-            erb :'/users/login'
+            redirect to('/books')
         end
     end 
 
+    post '/users/signup' do
+        @user = User.new(params)
+        if !@user.save
+          @errors = @user.errors.full_messages
+          erb :'users/create_user'
+        else
+          session[:user_id] = @user.id
+          redirect to('/books')
+        end
+      end
+
+    get '/users/login' do
+        if !session[:user_id]
+          erb :'users/login'
+        else
+          redirect to('/books')
+        end
+      end 
+
     post '/users/login' do 
-        #want to find the user, if it exists
         @user = User.find_by(username: params[:username])
-        #if user exist, authenticate password
         if @user && @user.authenticate(params[:password])
-            session[:user_id]=@user.id 
-            redirect "/users/#{@user.id}"
+            session[:user_id] = @user.id 
+            redirect to('/books')
         else 
-            redirect "/users/login"
+            @errors = "Invalid username or password."
+            erb :'users/login'
         end 
     end 
 
-
+    get '/users/logout' do
+        if logged_in?
+            @user = current_user
+            @user = nil
+            session.destroy
+            redirect to('/')
+        else
+          redirect to('/')
+        end
+    end
 
 end 

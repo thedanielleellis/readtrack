@@ -1,12 +1,4 @@
-<% @books.each do |book| %>
+<p> Welcome to ReadTrack <%= @current_user.username %></p>
 
-    Book Number: <%= book.id %>
-    Child Name: <%= book.child_name %> 
-    Child Age: <%= book.child_age %> 
-    Book Title: <%= book.book_title %> 
-    Authors Name: <%= book.authors_name %> 
-    Page Count: <%= book.page_count %> 
-    Reading Level: <%= book.reading_level %>
-    Username: <%= book.user.username %>
+ 
 
-<% end %>
